@@ -2,16 +2,17 @@
 
 # Walter's Coffee Shop
 
-<img src="game/idle.svg" width="600" alt="Coffee Shop" />
+<details name="shop" open>
+<summary><b>🏪 &nbsp;The Coffee Shop</b></summary>
+<img src="game/idle.svg" width="600" alt="Coffee Shop — idle" />
+</details>
 
-<br/>
-
-<details>
+<details name="shop">
 <summary>☕ &nbsp;<b>Order a Coffee</b></summary>
 <img src="game/serve-coffee.svg" width="600" alt="Serving coffee" />
 </details>
 
-<details>
+<details name="shop">
 <summary>🥐 &nbsp;<b>Order a Pastry</b></summary>
 <img src="game/serve-pastry.svg" width="600" alt="Serving a pastry" />
 </details>
