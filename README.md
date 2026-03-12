@@ -1,16 +1,24 @@
-## Hi there 👋
+<div align="center">
 
-<!--
-**s4lt3d/s4lt3d** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# Walter's Coffee Shop 
 
-Here are some ideas to get you started:
+<img src="game/coffee-shop.svg?v=0" alt="Coffee Shop" width="600"/>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<br />
+
+**What'll it be?**
+
+[![☕ Order a Coffee](https://img.shields.io/badge/☕_Order_a_Coffee-4A2810?style=for-the-badge\&logoColor=white)](https://github.com/s4lt3d/s4lt3d/issues/new?title=order-coffee\&body=One+coffee+please+%E2%98%95%EF%B8%8F\&labels=order)
+  
+[![🥐 Order a Pastry](https://img.shields.io/badge/🥐_Order_a_Pastry-E8C070?style=for-the-badge\&logoColor=333333)](https://github.com/s4lt3d/s4lt3d/issues/new?title=order-pastry\&body=One+pastry+please+%F0%9F%A5%90\&labels=order)
+
+<sub>Click a button → a GitHub issue is created → automation processes your order → animation updates!
+(Requires a GitHub account · updates take \~30–60 seconds)</sub>
+
+***
+
+### Hi, I'm Walter
+
+I make games and drink coffee. Take a look around.
+
+</div>

@@ -1,0 +1,72 @@
+name: ☕ Coffee Shop
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  process-order:
+    runs-on: ubuntu-latest
+    # Only run for order issues
+    if: |
+      contains(github.event.issue.title, 'order-coffee') ||
+      contains(github.event.issue.title, 'order-pastry')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Process order
+        run: python3 game/process_order.py "${{ github.event.issue.title }}"
+
+      - name: Generate serving SVG
+        run: python3 game/generate_svg.py
+
+      - name: Commit serving state
+        run: |
+          git config user.name  "Coffee Shop Bot"
+          git config user.email "coffee-bot@users.noreply.github.com"
+          git add game/coffee-shop.svg game/state.json README.md
+          git commit -m "☕ Order received: ${{ github.event.issue.title }}"
+          git push
+
+      - name: Reply and close issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const state = require('fs').readFileSync('game/state.json', 'utf8');
+            const { last_order, order_count } = JSON.parse(state);
+            const emoji = last_order === 'coffee' ? '☕' : '🥐';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              issue_number: context.issue.number,
+              body: `${emoji} Order #${order_count} received! Head back to the [profile page](https://github.com/${context.repo.owner}) to see the animation — it may take a minute for the image to refresh.\n\n_Thanks for stopping by the coffee shop!_`
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed'
+            });
+
+      # Wait for the serving animation to finish, then reset to idle
+      - name: Wait for animation
+        run: sleep 20
+
+      - name: Reset to idle
+        run: |
+          python3 game/reset_state.py
+          python3 game/generate_svg.py
+
+      - name: Commit idle state
+        run: |
+          git pull --rebase
+          git config user.name  "Coffee Shop Bot"
+          git config user.email "coffee-bot@users.noreply.github.com"
+          git add game/coffee-shop.svg game/state.json
+          git commit -m "🔄 Coffee shop ready for next order"
+          git push
