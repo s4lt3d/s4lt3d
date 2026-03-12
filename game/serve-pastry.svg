@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 272" width="600" height="272">
+<style>
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-3px); }
+  }
+  @keyframes lean {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-10px); }
+  }
+  @keyframes box-arrive {
+    0%   { transform: translateX(-56px); opacity: 0; }
+    65%  { transform: translateX(4px);   opacity: 1; }
+    80%  { transform: translateX(-2px);  opacity: 1; }
+    100% { transform: translateX(0);     opacity: 1; }
+  }
+  @keyframes steam {
+    0%   { opacity: 0; transform: translateY(0) scale(1); }
+    40%  { opacity: 0.8; }
+    100% { opacity: 0; transform: translateY(-28px) scale(1.4); }
+  }
+  .s1 { animation: steam 2.6s ease-out 1; }
+  .s2 { animation: steam 2.6s ease-out 0.9s 1; }
+  .s3 { animation: steam 2.6s ease-out 0; }
+  #cx { animation: lean 0.7s ease-out 0.3s forwards; }
+  #cy { animation: bob 1.1s ease-in-out infinite; }
+  #box { animation: box-arrive 0.9s ease-out 0.1s both; }
+</style>
+<rect x="0" y="0" width="600" height="168" fill="#F2D9A0"/>
+<rect x="0" y="0" width="8" height="168" fill="#E8CE8C"/>
+<rect x="96" y="0" width="8" height="168" fill="#E8CE8C"/>
+<rect x="192" y="0" width="8" height="168" fill="#E8CE8C"/>
+<rect x="288" y="0" width="8" height="168" fill="#E8CE8C"/>
+<rect x="384" y="0" width="8" height="168" fill="#E8CE8C"/>
+<rect x="480" y="0" width="8" height="168" fill="#E8CE8C"/>
+<rect x="576" y="0" width="8" height="168" fill="#E8CE8C"/>
+<rect x="0" y="168" width="600" height="104" fill="#8B6533"/>
+<rect x="0" y="168" width="600" height="8" fill="#7A5525"/>
+<rect x="0" y="192" width="600" height="8" fill="#7A5525"/>
+<rect x="0" y="216" width="600" height="8" fill="#7A5525"/>
+<rect x="0" y="240" width="600" height="8" fill="#7A5525"/>
+<rect x="0" y="264" width="600" height="8" fill="#7A5525"/>
+<rect x="24" y="8" width="176" height="136" fill="#5C3A1E"/>
+<rect x="32" y="16" width="160" height="120" fill="#87CEEB"/>
+<rect x="48" y="24" width="40" height="16" fill="#FFFFFF"/>
+<rect x="112" y="32" width="48" height="16" fill="#FFFFFF"/>
+<rect x="80" y="40" width="24" height="8" fill="#FFFFFF"/>
+<rect x="112" y="16" width="8" height="120" fill="#5C3A1E"/>
+<rect x="32" y="80" width="160" height="8" fill="#5C3A1E"/>
+<rect x="16" y="144" width="192" height="8" fill="#5C3A1E"/>
+<rect x="400" y="8" width="192" height="8" fill="#2E5038"/>
+<rect x="400" y="8" width="192" height="112" fill="#1A3020"/>
+<rect x="400" y="112" width="192" height="8" fill="#2E5038"/>
+<rect x="400" y="8" width="8" height="112" fill="#2E5038"/>
+<rect x="584" y="8" width="8" height="112" fill="#2E5038"/>
+<text x="496" y="40" font-family="monospace" font-size="12" font-weight="bold" fill="#F5E642" text-anchor="middle">MENU</text>
+<line x1="408" y1="48" x2="584" y2="48" stroke="#AAAAAA" stroke-width="1"/>
+<text x="424" y="72" font-family="monospace" font-size="10" font-weight="normal" fill="#EEEEEE" text-anchor="start">&#9749; Coffee</text>
+<text x="424" y="96" font-family="monospace" font-size="10" font-weight="normal" fill="#EEEEEE" text-anchor="start">&#129360; Pastry</text>
+<rect x="16" y="152" width="568" height="16" fill="#2C1606"/>
+<rect x="16" y="152" width="568" height="8" fill="#5E3218"/>
+<rect x="16" y="168" width="568" height="40" fill="#4A2810"/>
+<rect x="16" y="200" width="568" height="8" fill="#2C1606"/>
+<rect x="56" y="72" width="96" height="88" fill="#ABABAB"/>
+<rect x="64" y="56" width="80" height="24" fill="#808080"/>
+<rect x="72" y="48" width="56" height="16" fill="#808080"/>
+<rect x="144" y="72" width="8" height="88" fill="#D0D0D0"/>
+<rect x="72" y="80" width="40" height="32" fill="#111111"/>
+<rect x="80" y="88" width="16" height="8" fill="#00CC44"/>
+<rect x="104" y="88" width="8" height="8" fill="#CC2200"/>
+<rect x="80" y="104" width="16" height="8" fill="#00CC44"/>
+<rect x="56" y="96" width="8" height="40" fill="#808080"/>
+<rect x="72" y="128" width="40" height="32" fill="#808080"/>
+<rect x="80" y="144" width="24" height="16" fill="#808080"/>
+<rect x="64" y="152" width="56" height="8" fill="#808080"/>
+<ellipse cx="96"     cy="136" rx="4" ry="3" fill="#DDDDDD" class="s1" opacity="0"/>
+<ellipse cx="103" cy="136" rx="3" ry="2" fill="#DDDDDD" class="s2" opacity="0"/>
+<ellipse cx="90" cy="136" rx="3" ry="2" fill="#DDDDDD" class="s3" opacity="0"/>
+<rect x="360" y="96" width="144" height="64" fill="#C8B09A"/>
+<rect x="368" y="104" width="128" height="48" fill="#D8EEF8"/>
+<rect x="376" y="128" width="112" height="8" fill="#7A5525"/>
+<rect x="384" y="112" width="32" height="16" fill="#E8C070"/>
+<rect x="392" y="104" width="16" height="8" fill="#C8980A"/>
+<rect x="424" y="104" width="24" height="8" fill="#A05020"/>
+<rect x="424" y="112" width="24" height="16" fill="#7B3A10"/>
+<rect x="456" y="112" width="32" height="16" fill="#D4A860"/>
+<rect x="384" y="136" width="24" height="16" fill="#7B3A10"/>
+<rect x="416" y="136" width="32" height="16" fill="#E8C070"/>
+<rect x="456" y="136" width="32" height="16" fill="#D4A860"/>
+<rect x="216" y="80" width="40" height="16" fill="#2A1005"/>
+<rect x="216" y="96" width="40" height="24" fill="#F5C99A"/>
+<rect x="208" y="96" width="8" height="16" fill="#F5C99A"/>
+<rect x="256" y="96" width="8" height="16" fill="#F5C99A"/>
+<rect x="224" y="104" width="8" height="8" fill="#444444"/>
+<rect x="240" y="104" width="8" height="8" fill="#444444"/>
+<rect x="216" y="120" width="40" height="8" fill="#FFFFFF"/>
+<rect x="208" y="128" width="56" height="32" fill="#2255BB"/>
+<rect x="224" y="128" width="24" height="8" fill="#FFFFFF"/>
+<rect x="200" y="136" width="16" height="16" fill="#F5C99A"/>
+<rect x="264" y="136" width="16" height="16" fill="#F5C99A"/>
+<g id="box">
+<rect x="320" y="136" width="40" height="16" fill="#F4E3C1"/>
+<rect x="312" y="128" width="56" height="8" fill="#E8D0A8"/>
+<rect x="312" y="136" width="56" height="8" fill="#CC4488"/>
+<rect x="336" y="128" width="8" height="24" fill="#CC4488"/>
+<rect x="328" y="120" width="8" height="8" fill="#CC4488"/>
+<rect x="344" y="120" width="8" height="8" fill="#CC4488"/>
+</g>
+<g id="cx"><g id="cy">
+<rect x="496" y="96" width="40" height="16" fill="#1A1A1A"/>
+<rect x="496" y="112" width="40" height="24" fill="#F5C99A"/>
+<rect x="488" y="112" width="8" height="16" fill="#F5C99A"/>
+<rect x="536" y="112" width="8" height="16" fill="#F5C99A"/>
+<rect x="504" y="120" width="8" height="8" fill="#444444"/>
+<rect x="520" y="120" width="8" height="8" fill="#444444"/>
+<rect x="488" y="136" width="56" height="24" fill="#BB3333"/>
+<rect x="496" y="160" width="40" height="24" fill="#334466"/>
+<rect x="496" y="176" width="16" height="8" fill="#222222"/>
+<rect x="520" y="176" width="16" height="8" fill="#222222"/>
+</g></g>
+<rect x="0" y="240" width="600" height="32" fill="rgba(0,0,0,0.62)"/>
+<text x="300" y="262" font-family="monospace" font-size="13" font-weight="bold" fill="white" text-anchor="middle">  🥐 Here’s your pastry!  </text>
+</svg>
