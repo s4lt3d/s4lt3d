@@ -245,6 +245,18 @@ def status_bar(text):
     ]
 
 
+def status_bar_crossfade(text_a, text_b):
+    """Two overlapping status bar texts: text_a fades out, text_b fades in."""
+    W, H = px(GW), px(GH)
+    return [
+        f'<rect x="0" y="{H - 32}" width="{W}" height="32" fill="rgba(0,0,0,0.62)"/>',
+        (f'<text x="{W // 2}" y="{H - 10}" font-family="monospace" font-size="13" '
+         f'font-weight="bold" fill="white" text-anchor="middle" class="txt-a">{text_a}</text>'),
+        (f'<text x="{W // 2}" y="{H - 10}" font-family="monospace" font-size="13" '
+         f'font-weight="bold" fill="white" text-anchor="middle" class="txt-b" opacity="0">{text_b}</text>'),
+    ]
+
+
 def svg_wrap(styles, body_lines):
     W, H = px(GW), px(GH)
     lines = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">']
@@ -298,35 +310,59 @@ def generate_idle():
 
 
 def generate_serve_coffee():
+    # Total animation: 6 seconds
+    # 0-30%  (0-1.8s): customer floats in from right with walk bounce
+    # 30-58% (1.8-3.5s): bobs at counter while cup rises
+    # 58-67% (3.5-4.0s): leans forward, grabs cup (cup disappears)
+    # 67-75% (4.0-4.5s): steps back
+    # 75-100% (4.5-6.0s): floats off to the right with walk bounce
     styles = """<style>
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-3px); }
+  @keyframes coffee-trip {
+    0%    { transform: translate(192px,   0); }
+    8%    { transform: translate(140px,  -3px); }
+    16%   { transform: translate(80px,    0); }
+    24%   { transform: translate(30px,   -3px); }
+    30%   { transform: translate(0,       0); }
+    36%   { transform: translate(0,      -4px); }
+    42%   { transform: translate(0,       0); }
+    48%   { transform: translate(0,      -4px); }
+    54%   { transform: translate(0,       0); }
+    58%   { transform: translate(-10px,  -2px); }
+    65%   { transform: translate(-10px,   0); }
+    72%   { transform: translate(0,       0); }
+    79%   { transform: translate(40px,   -3px); }
+    86%   { transform: translate(100px,   0); }
+    93%   { transform: translate(160px,  -3px); }
+    100%  { transform: translate(240px,   0); }
   }
-  @keyframes lean {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-10px); }
-  }
-  @keyframes cup-rise {
-    0%   { transform: translateY(20px); opacity: 0; }
-    50%  { transform: translateY(0);    opacity: 1; }
-    100% { transform: translateY(0);    opacity: 1; }
+  @keyframes cup-life {
+    0%    { transform: translateY(20px); opacity: 0; }
+    28%   { transform: translateY(20px); opacity: 0; }
+    42%   { transform: translateY(0);    opacity: 1; }
+    56%   { transform: translateY(0);    opacity: 1; }
+    65%   { transform: translateY(-8px); opacity: 0; }
+    100%  { transform: translateY(-8px); opacity: 0; }
   }
   @keyframes steam {
     0%   { opacity: 0; transform: translateY(0) scale(1); }
     40%  { opacity: 0.8; }
     100% { opacity: 0; transform: translateY(-28px) scale(1.4); }
   }
-  /* machine steam: 2 puffs then done */
-  .s1 { animation: steam 2.6s ease-out 2; }
-  .s2 { animation: steam 2.6s ease-out 0.9s 2; }
-  .s3 { animation: steam 2.6s ease-out 1.7s 1; }
-  /* cup steam: loops after cup arrives */
-  .cs1 { animation: steam 2s ease-out 1s infinite; }
-  .cs2 { animation: steam 2s ease-out 1.8s infinite; }
-  #cx { animation: lean 0.7s ease-out 0.3s forwards; }
-  #cy { animation: bob 1.1s ease-in-out infinite; }
-  #cup { animation: cup-rise 0.8s ease-out forwards; }
+  @keyframes txt-fade-out {
+    0%   { opacity: 1; } 68%  { opacity: 1; } 82%  { opacity: 0; } 100% { opacity: 0; }
+  }
+  @keyframes txt-fade-in {
+    0%   { opacity: 0; } 74%  { opacity: 0; } 90%  { opacity: 1; } 100% { opacity: 1; }
+  }
+  .s1  { animation: steam 2.6s ease-out 2; }
+  .s2  { animation: steam 2.6s ease-out 0.9s 2; }
+  .s3  { animation: steam 2.6s ease-out 1.7s 1; }
+  .cs1 { animation: steam 1.8s ease-out 2.0s 2; }
+  .cs2 { animation: steam 1.8s ease-out 2.7s 2; }
+  #customer { animation: coffee-trip 6s cubic-bezier(.4,0,.6,1) forwards; }
+  #cup      { animation: cup-life    6s ease-in-out forwards; }
+  .txt-a    { animation: txt-fade-out 6s ease-in-out forwards; }
+  .txt-b    { animation: txt-fade-in  6s ease-in-out forwards; }
 </style>"""
 
     body = []
@@ -339,47 +375,73 @@ def generate_serve_coffee():
     body.extend(scene_pastry_display())
     body.extend(scene_barista())
 
-    # Cup + its steam
     body.append('<g id="cup">')
     body.extend(coffee_cup_els())
     body.append('</g>')
     body.extend(cup_steam_els())
 
-    body.append('<g id="cx"><g id="cy">')
+    body.append('<g id="customer">')
     body.extend(customer_pixels())
-    body.append('</g></g>')
+    body.append('</g>')
 
-    body.extend(status_bar("  \u2615 One coffee, coming right up!  "))
+    body.extend(status_bar_crossfade(
+        "\u2615 One coffee, coming right up!",
+        "Enjoy! See you next time \u2615"
+    ))
     return svg_wrap(styles, body)
 
 
 def generate_serve_pastry():
+    # Same trip structure as coffee, with pastry box instead of cup
+    # Box slides in from the left (barista side) while customer waits
+    # Customer grabs it and walks off right
     styles = """<style>
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-3px); }
+  @keyframes pastry-trip {
+    0%    { transform: translate(192px,   0); }
+    8%    { transform: translate(140px,  -3px); }
+    16%   { transform: translate(80px,    0); }
+    24%   { transform: translate(30px,   -3px); }
+    30%   { transform: translate(0,       0); }
+    36%   { transform: translate(0,      -4px); }
+    42%   { transform: translate(0,       0); }
+    48%   { transform: translate(0,      -4px); }
+    54%   { transform: translate(0,       0); }
+    58%   { transform: translate(-10px,  -2px); }
+    65%   { transform: translate(-10px,   0); }
+    72%   { transform: translate(0,       0); }
+    79%   { transform: translate(40px,   -3px); }
+    86%   { transform: translate(100px,   0); }
+    93%   { transform: translate(160px,  -3px); }
+    100%  { transform: translate(240px,   0); }
   }
-  @keyframes lean {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-10px); }
-  }
-  @keyframes box-arrive {
-    0%   { transform: translateX(-56px); opacity: 0; }
-    65%  { transform: translateX(4px);   opacity: 1; }
-    80%  { transform: translateX(-2px);  opacity: 1; }
-    100% { transform: translateX(0);     opacity: 1; }
+  @keyframes box-life {
+    0%    { transform: translateX(-64px); opacity: 0; }
+    28%   { transform: translateX(-64px); opacity: 0; }
+    42%   { transform: translateX(4px);   opacity: 1; }
+    47%   { transform: translateX(-2px);  opacity: 1; }
+    52%   { transform: translateX(0);     opacity: 1; }
+    56%   { transform: translateX(0);     opacity: 1; }
+    65%   { transform: translateX(16px);  opacity: 0; }
+    100%  { transform: translateX(16px);  opacity: 0; }
   }
   @keyframes steam {
     0%   { opacity: 0; transform: translateY(0) scale(1); }
     40%  { opacity: 0.8; }
     100% { opacity: 0; transform: translateY(-28px) scale(1.4); }
   }
+  @keyframes txt-fade-out {
+    0%   { opacity: 1; } 68%  { opacity: 1; } 82%  { opacity: 0; } 100% { opacity: 0; }
+  }
+  @keyframes txt-fade-in {
+    0%   { opacity: 0; } 74%  { opacity: 0; } 90%  { opacity: 1; } 100% { opacity: 1; }
+  }
   .s1 { animation: steam 2.6s ease-out 1; }
   .s2 { animation: steam 2.6s ease-out 0.9s 1; }
-  .s3 { animation: steam 2.6s ease-out 0; }
-  #cx { animation: lean 0.7s ease-out 0.3s forwards; }
-  #cy { animation: bob 1.1s ease-in-out infinite; }
-  #box { animation: box-arrive 0.9s ease-out 0.1s both; }
+  .s3 { animation: steam 0s; }
+  #customer { animation: pastry-trip 6s cubic-bezier(.4,0,.6,1) forwards; }
+  #box      { animation: box-life    6s ease-in-out forwards; }
+  .txt-a    { animation: txt-fade-out 6s ease-in-out forwards; }
+  .txt-b    { animation: txt-fade-in  6s ease-in-out forwards; }
 </style>"""
 
     body = []
@@ -396,11 +458,14 @@ def generate_serve_pastry():
     body.extend(pastry_box_els())
     body.append('</g>')
 
-    body.append('<g id="cx"><g id="cy">')
+    body.append('<g id="customer">')
     body.extend(customer_pixels())
-    body.append('</g></g>')
+    body.append('</g>')
 
-    body.extend(status_bar("  \U0001f950 Here\u2019s your pastry!  "))
+    body.extend(status_bar_crossfade(
+        "\U0001f950 One pastry, coming right up!",
+        "Enjoy! See you next time \U0001f950"
+    ))
     return svg_wrap(styles, body)
 
 

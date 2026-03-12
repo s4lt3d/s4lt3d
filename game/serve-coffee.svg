@@ -1,33 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 272" width="600" height="272">
 <style>
-  @keyframes bob {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-3px); }
+  @keyframes coffee-trip {
+    0%    { transform: translate(192px,   0); }
+    8%    { transform: translate(140px,  -3px); }
+    16%   { transform: translate(80px,    0); }
+    24%   { transform: translate(30px,   -3px); }
+    30%   { transform: translate(0,       0); }
+    36%   { transform: translate(0,      -4px); }
+    42%   { transform: translate(0,       0); }
+    48%   { transform: translate(0,      -4px); }
+    54%   { transform: translate(0,       0); }
+    58%   { transform: translate(-10px,  -2px); }
+    65%   { transform: translate(-10px,   0); }
+    72%   { transform: translate(0,       0); }
+    79%   { transform: translate(40px,   -3px); }
+    86%   { transform: translate(100px,   0); }
+    93%   { transform: translate(160px,  -3px); }
+    100%  { transform: translate(240px,   0); }
   }
-  @keyframes lean {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-10px); }
-  }
-  @keyframes cup-rise {
-    0%   { transform: translateY(20px); opacity: 0; }
-    50%  { transform: translateY(0);    opacity: 1; }
-    100% { transform: translateY(0);    opacity: 1; }
+  @keyframes cup-life {
+    0%    { transform: translateY(20px); opacity: 0; }
+    28%   { transform: translateY(20px); opacity: 0; }
+    42%   { transform: translateY(0);    opacity: 1; }
+    56%   { transform: translateY(0);    opacity: 1; }
+    65%   { transform: translateY(-8px); opacity: 0; }
+    100%  { transform: translateY(-8px); opacity: 0; }
   }
   @keyframes steam {
     0%   { opacity: 0; transform: translateY(0) scale(1); }
     40%  { opacity: 0.8; }
     100% { opacity: 0; transform: translateY(-28px) scale(1.4); }
   }
-  /* machine steam: 2 puffs then done */
-  .s1 { animation: steam 2.6s ease-out 2; }
-  .s2 { animation: steam 2.6s ease-out 0.9s 2; }
-  .s3 { animation: steam 2.6s ease-out 1.7s 1; }
-  /* cup steam: loops after cup arrives */
-  .cs1 { animation: steam 2s ease-out 1s infinite; }
-  .cs2 { animation: steam 2s ease-out 1.8s infinite; }
-  #cx { animation: lean 0.7s ease-out 0.3s forwards; }
-  #cy { animation: bob 1.1s ease-in-out infinite; }
-  #cup { animation: cup-rise 0.8s ease-out forwards; }
+  @keyframes txt-fade-out {
+    0%   { opacity: 1; } 68%  { opacity: 1; } 82%  { opacity: 0; } 100% { opacity: 0; }
+  }
+  @keyframes txt-fade-in {
+    0%   { opacity: 0; } 74%  { opacity: 0; } 90%  { opacity: 1; } 100% { opacity: 1; }
+  }
+  .s1  { animation: steam 2.6s ease-out 2; }
+  .s2  { animation: steam 2.6s ease-out 0.9s 2; }
+  .s3  { animation: steam 2.6s ease-out 1.7s 1; }
+  .cs1 { animation: steam 1.8s ease-out 2.0s 2; }
+  .cs2 { animation: steam 1.8s ease-out 2.7s 2; }
+  #customer { animation: coffee-trip 6s cubic-bezier(.4,0,.6,1) forwards; }
+  #cup      { animation: cup-life    6s ease-in-out forwards; }
+  .txt-a    { animation: txt-fade-out 6s ease-in-out forwards; }
+  .txt-b    { animation: txt-fade-in  6s ease-in-out forwards; }
 </style>
 <rect x="0" y="0" width="600" height="168" fill="#4A6B4A"/>
 <rect x="0" y="0" width="8" height="168" fill="#3A5439"/>
@@ -110,7 +128,7 @@
 </g>
 <ellipse cx="320"     cy="136" rx="4" ry="3" fill="#E0EDE0" class="cs1" opacity="0"/>
 <ellipse cx="327" cy="136" rx="3" ry="2" fill="#E0EDE0" class="cs2" opacity="0"/>
-<g id="cx"><g id="cy">
+<g id="customer">
 <rect x="496" y="96" width="40" height="16" fill="#D4A520"/>
 <rect x="496" y="112" width="40" height="24" fill="#F5C8A0"/>
 <rect x="488" y="112" width="8" height="16" fill="#F5C8A0"/>
@@ -121,7 +139,8 @@
 <rect x="496" y="160" width="40" height="24" fill="#5C3A1E"/>
 <rect x="496" y="176" width="16" height="8" fill="#222222"/>
 <rect x="520" y="176" width="16" height="8" fill="#222222"/>
-</g></g>
+</g>
 <rect x="0" y="240" width="600" height="32" fill="rgba(0,0,0,0.62)"/>
-<text x="300" y="262" font-family="monospace" font-size="13" font-weight="bold" fill="white" text-anchor="middle">  ☕ One coffee, coming right up!  </text>
+<text x="300" y="262" font-family="monospace" font-size="13" font-weight="bold" fill="white" text-anchor="middle" class="txt-a">☕ One coffee, coming right up!</text>
+<text x="300" y="262" font-family="monospace" font-size="13" font-weight="bold" fill="white" text-anchor="middle" class="txt-b" opacity="0">Enjoy! See you next time ☕</text>
 </svg>
