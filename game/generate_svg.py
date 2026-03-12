@@ -7,50 +7,62 @@ GW = 75       # grid width  → 600 px
 GH = 34       # grid height → 272 px
 
 C = {
-    'wall':         '#F2D9A0',
-    'wall_stripe':  '#E8CE8C',
-    'floor':        '#8B6533',
-    'floor_dark':   '#7A5525',
-    'counter_top':  '#2C1606',
-    'counter_face': '#4A2810',
-    'counter_shine':'#5E3218',
+    # Walls — AC Roost sage green scallop wallpaper
+    'wall':         '#4A6B4A',
+    'wall_stripe':  '#3A5439',
+    # Floor — dark warm wood planks
+    'floor':        '#4A2E18',
+    'floor_dark':   '#3B2010',
+    # Counter — warm dark wood with amber glow on the top edge
+    'counter_top':  '#3E2210',
+    'counter_face': '#5C3A1E',
+    'counter_shine':'#C8822A',   # amber light pooling on the counter surface
+    # Window
     'win_frame':    '#5C3A1E',
-    'win_sky':      '#87CEEB',
-    'win_cloud':    '#FFFFFF',
-    'board':        '#1A3020',
-    'board_trim':   '#2E5038',
-    'chalk':        '#EEEEEE',
-    'chalk_yellow': '#F5E642',
-    'chalk_dim':    '#AAAAAA',
-    'mach_body':    '#ABABAB',
-    'mach_dark':    '#808080',
-    'mach_shine':   '#D0D0D0',
-    'mach_black':   '#111111',
-    'mach_green':   '#00CC44',
-    'mach_red':     '#CC2200',
-    'steam':        '#DDDDDD',
-    'case_frame':   '#C8B09A',
-    'case_glass':   '#D8EEF8',
-    'case_shelf':   '#7A5525',
+    'win_sky':      '#A8D0E8',   # soft AC-style pastel sky
+    'win_cloud':    '#E8F4F8',
+    # Chalkboard menu — deep forest green like AC UI panels
+    'board':        '#2E4A35',
+    'board_trim':   '#3A5A40',
+    'chalk':        '#D8F0D8',   # minty white (matches AC caption text)
+    'chalk_yellow': '#A8E8B0',   # mint accent (AC logo green)
+    'chalk_dim':    '#6A9A70',
+    # Coffee machine — silver/grey, same as AC's Roost machine
+    'mach_body':    '#9A9A9A',
+    'mach_dark':    '#6A6A6A',
+    'mach_shine':   '#C8C8C8',
+    'mach_black':   '#1A1A1A',
+    'mach_green':   '#4A7A3A',
+    'mach_red':     '#C03020',
+    'steam':        '#E0EDE0',   # faint green-tinted steam
+    # Pastry display — warm wood frame, green-tinted glass (AC vibe)
+    'case_frame':   '#8B5E2A',
+    'case_glass':   '#C0DCC8',   # green-tinted display glass
+    'case_shelf':   '#5C3A1E',
+    # Baked goods — unchanged, they're universal
     'croissant':    '#E8C070',
     'croissant_d':  '#C8980A',
     'muffin':       '#7B3A10',
     'muffin_top':   '#A05020',
     'cookie':       '#D4A860',
+    # Barista — sage green apron (Brewster-inspired palette)
     'bar_hair':     '#2A1005',
-    'bar_skin':     '#F5C99A',
-    'bar_shirt':    '#FFFFFF',
-    'bar_apron':    '#2255BB',
-    'cust_hair':    '#1A1A1A',
-    'cust_skin':    '#F5C99A',
-    'cust_shirt':   '#BB3333',
-    'cust_pants':   '#334466',
+    'bar_skin':     '#F5C8A0',
+    'bar_shirt':    '#E8F0E0',   # soft green-white shirt
+    'bar_apron':    '#2E5038',   # deep sage apron, very AC
+    # Customer — AC player villager: warm skin, golden blonde, yellow top
+    'cust_hair':    '#D4A520',
+    'cust_skin':    '#F5C8A0',
+    'cust_shirt':   '#F0C830',   # villager yellow
+    'cust_pants':   '#5C3A1E',   # warm brown, matches wood
+    # Coffee cup
     'cup_body':     '#F0EDE0',
     'cup_coffee':   '#5A2D0C',
-    'cup_sleeve':   '#C04422',
+    'cup_sleeve':   '#8B2020',   # maroon sleeve (like Isabelle's cup)
+    # Pastry box — warm cream with coral ribbon (Isabelle's shirt coral)
     'box_body':     '#F4E3C1',
     'box_lid':      '#E8D0A8',
-    'box_ribbon':   '#CC4488',
+    'box_ribbon':   '#E87060',   # coral, from Isabelle's outfit
 }
 
 
