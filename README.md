@@ -1,5 +1,9 @@
 ## Hi! I'm Walter! 
 
+Thanks for stopping by to check out the projects I have worked on! 
+
+Also! Check out my website at [https://waltergordy.com](https://waltergordy.com) for my portfolio.  
+
 <!--
 **s4lt3d/s4lt3d** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
